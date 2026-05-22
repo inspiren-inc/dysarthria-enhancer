@@ -1,0 +1,24 @@
+[project]
+name = "dysarthria-enhancer"
+version = "0.0.1"
+description = "Fine-tune OSS voice models for elderly and dysarthric speech enhancement"
+requires-python = ">=3.11"
+authors = [{name = "Colby Leider", email = "colby@inspiren.com"}]
+license = {text = "MIT"}
+dependencies = [
+  "click>=8.1",
+  "numpy>=1.26",
+  "soundfile>=0.12",
+]
+# Heavy deps (torch, transformers, peft) deliberately omitted until the
+# training side is wired in. Users add them per their CUDA/Apple-silicon situation.
+
+[project.scripts]
+dysarthria-enhancer = "dysarthria_enhancer.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dysarthria_enhancer"]
